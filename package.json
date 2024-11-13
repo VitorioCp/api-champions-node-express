@@ -17,12 +17,14 @@
   "license": "ISC",
   "dependencies": {
     "api-champions-node-express": "file:",
-    "express": "^4.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.0"
   }
 }
