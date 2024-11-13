@@ -35,18 +35,36 @@ export const createPlayerService = async (player: PlayerModel) => {
 
     if (Object.keys(player).length !== 0) {
         await PlayerRepository.insertPlayer(player);
-        response = httpResponse.created();
+        response = await httpResponse.created();
     } else {
-        response = httpResponse.badRequest();
+        response = await httpResponse.badRequest();
     }
     return response;
 }
 
-export const deletePlayerService = async (id:number) => {
+export const deletePlayerService = async (id: number) => {
     let response = null;
-    await PlayerRepository.deleteOnePlayer(id);
-    
-    response = httpResponse.ok({message: "delete"});
+    const isDeleated: boolean = await PlayerRepository.deleteOnePlayer(id);
+
+    if (isDeleated) {
+        response = await httpResponse.ok({ message: "delete" });
+    } else {
+        response = await httpResponse.badRequest();
+    }
+
 
     return response;
+}
+
+export const putPlayerService = async (id: number, bodyValue: PlayerModel) => {
+    const data: any = await PlayerRepository.putPlayer(id, bodyValue);
+    let response = null;
+
+    if (Object.keys(data).length === 0) {
+        response = await httpResponse.badRequest();
+    } else {
+        response = await httpResponse.ok(data)
+    }
+    return response;
+
 }

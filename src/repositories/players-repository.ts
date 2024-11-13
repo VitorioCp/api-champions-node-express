@@ -7,7 +7,7 @@ const database: PlayerModel[] = [
         club: "Botafogo",
         nationality: "Brasil",
         position: "Zc",
-       
+
     },
     {
         id: 2,
@@ -15,10 +15,10 @@ const database: PlayerModel[] = [
         club: "Botafogo",
         nationality: "Brasil",
         position: "Zc",
-       
+
     },
-    
-    
+
+
 ]
 
 export const findAllPlayers = async (): Promise<PlayerModel[]> => {
@@ -30,15 +30,27 @@ export const findPlayerById = async (id: number): Promise<PlayerModel | undefine
 
 }
 
-export const insertPlayer = async(player:PlayerModel) => {
+export const insertPlayer = async (player: PlayerModel) => {
     database.push(player);
     console.log(player)
 }
 
-export const deleteOnePlayer = async(id:number) => {
+export const deleteOnePlayer = async (id: number) => {
     const index = database.findIndex(p => p.id === id);
-    if(index !== -1){
+    if (index !== -1) {
         database.splice(index, 1);
+        return true
     }
-    
+    return false
+
 }
+
+export const putPlayer = async (id: number, bodyValue: PlayerModel): Promise<PlayerModel | null> => {
+    const index = database.findIndex(p => p.id === id);
+    if (index !== -1) {
+        database[index] = bodyValue;
+        return database[index];
+    }
+
+    return null; 
+};
