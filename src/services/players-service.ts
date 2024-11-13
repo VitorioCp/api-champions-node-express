@@ -13,3 +13,17 @@ export const getPlayerService = async() => {
 
     return response
 };
+
+export const getPlayerServiceById = async(id: number) => {
+    const data = await PlayerRepository.findPlayerById(id);
+    let response = null;
+    
+    if(data){
+        response = await ok(data);
+    } else {
+        response = await noContent();
+    }
+
+    return response;
+    
+}
