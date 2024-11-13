@@ -9,6 +9,14 @@ const database: PlayerModel[] = [
         position: "Zc",
        
     },
+    {
+        id: 2,
+        name: "Leticia",
+        club: "Botafogo",
+        nationality: "Brasil",
+        position: "Zc",
+       
+    },
     
     
 ]

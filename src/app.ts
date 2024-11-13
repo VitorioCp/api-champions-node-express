@@ -1,5 +1,4 @@
 import express from "express";
-import { getPlayer } from "./controllers/players-controller.ts";
 import router from "./routes";
 
 
